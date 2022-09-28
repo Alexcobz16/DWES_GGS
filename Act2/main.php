@@ -16,11 +16,17 @@
     <?php 
     
     if( (!empty($_REQUEST["nombre"])) and (!empty($_REQUEST["modulo1"])) and (empty($_REQUEST["modulo2"])) ){
+
         echo "El nombre es ", $_REQUEST["nombre"], " y está en el módulo de ", $_REQUEST["modulo1"];
+
     }elseif ( (!empty($_REQUEST["nombre"])) and (empty($_REQUEST["modulo1"])) and (!empty($_REQUEST["modulo2"])) ) {
+
         echo "El nombre es ", $_REQUEST["nombre"], " y está en el módulo de ", $_REQUEST["modulo2"];
+
     }elseif ( (!empty($_REQUEST["nombre"])) and (!empty($_REQUEST["modulo1"])) and (!empty($_REQUEST["modulo2"])) ) {
+
         echo "El nombre es ", $_REQUEST["nombre"], " y está en los módulos de ", $_REQUEST["modulo1"], " y ", $_REQUEST["modulo2"];
+        
     }
 
     ?>
