@@ -11,13 +11,13 @@
             <input type="submit" value="Enviar">
         </form>
     </body>
+</html>
 
     <?php 
     
-    if((!empty($_REQUEST["nombre"]))and(!empty($_REQUEST["modulo"]))){
+    if( (!empty($_REQUEST["nombre"])) and (!empty($_REQUEST["modulo"])) ){
         echo "El nombre es ", $_REQUEST["nombre"]," y está en el módulo ", $_REQUEST["modulo"];
     }
-    
+
     ?>
 
-</html>
