@@ -24,12 +24,10 @@
     <br/>
 
     <?php
+        $modulos[] = array($_REQUEST["modulo"]);
+    if( !empty($modulos) ){
 
-    if( !empty($_REQUEST[array("modulo")]) ){
-
-        $modulos[] = $_REQUEST[array("modulo")];
-
-       foreach ($modulos as $nombre) {
+       foreach ($modulos  as $nombre) {
         echo "Modulo: ", $nombre;
     }
      
