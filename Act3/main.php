@@ -11,26 +11,47 @@
 </html>
 
 <?php
-#llamadas menos de 5min = 20 cent
-#llamadas de mas de 5 min = 5 cent/min
+
+comprobarMinutos();
+
+function comprobarMinutos(){
+
 $minimo = 5;
 $minutos = $_REQUEST["minutos"];
 $precio = 20;
 
-if($minutos>5){
+    if((is_numeric($minutos))&&($minutos==0)){
+        echo "<p style='color:red'>ERROR: No se admite el 0</p>";
+    }elseif(is_numeric($minutos)){
+        calcularPrecio($minimo,$minutos,$precio);
+    }else{
+        echo "<p style='color:red'>ERROR: Solo se admiten números</p>";
+    }
+}
 
-    $minutos = $minutos - $minimo;
 
-    $precio = $precio + $minutos*$minimo;
+function calcularPrecio($minimo,$minutos,$precio){
+    if($minutos>5){
+
+        $minutos = $minutos - $minimo;
+    
+        $precio = $precio + $minutos*$minimo;
+    
+    }
+
+    mostrarPrecio($precio);
 
 }
 
-#falta control de errores.
 
-if($precio == 20){
-    echo "Precio mínimo de la llamada: ", money_format("%i",$precio/100), "€";
-}else{
-    echo "Precio de la llamada: ", money_format("%i",$precio/100), "€";
+
+
+function mostrarPrecio($precio){
+    if($precio == 20){
+        echo "Precio mínimo de la llamada: ", money_format("%i",$precio/100), "€";
+    }else{
+        echo "Precio de la llamada: ", money_format("%i",$precio/100), "€";
+    }
 }
 
 ?>
