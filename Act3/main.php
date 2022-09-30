@@ -20,8 +20,8 @@ $minimo = 5;
 $minutos = $_REQUEST["minutos"];
 $precio = 20;
 
-    if((is_numeric($minutos))&&($minutos==0)){
-        echo "<p style='color:red'>ERROR: No se admite el 0</p>";
+    if((is_numeric($minutos))&&($minutos<=0)){
+        echo "<p style='color:red'>ERROR: No se admiten números menores ni iguales a 0</p>";
     }elseif(is_numeric($minutos)){
         calcularPrecio($minimo,$minutos,$precio);
     }else{
