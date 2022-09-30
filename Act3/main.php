@@ -21,16 +21,23 @@ $minutos = $_REQUEST["minutos"];
 $precio = 20;
 
     if((is_numeric($minutos))&&($minutos<=0)){
+        
         echo "<p style='color:red'>ERROR: No se admiten números menores ni iguales a 0</p>";
-    }elseif(is_numeric($minutos)){
+    
+    } elseif(is_numeric($minutos)){
+        
         calcularPrecio($minimo,$minutos,$precio);
-    }else{
+    
+    } else{
+
         echo "<p style='color:red'>ERROR: Solo se admiten números</p>";
+    
     }
 }
 
 
 function calcularPrecio($minimo,$minutos,$precio){
+    
     if($minutos>5){
 
         $minutos = $minutos - $minimo;
@@ -47,10 +54,15 @@ function calcularPrecio($minimo,$minutos,$precio){
 
 
 function mostrarPrecio($precio){
+    
     if($precio == 20){
+    
         echo "Precio mínimo de la llamada: ", money_format("%i",$precio/100), "€";
+    
     }else{
+    
         echo "Precio de la llamada: ", money_format("%i",$precio/100), "€";
+    
     }
 }
 
