@@ -8,8 +8,13 @@
 
     echo "<p>Fácil</p>";
 
-    function facil(){
+    $sudoku = array();
+
+    facil($sudoku);
+
+    function facil($sudoku){
         $dificultad = 1;
+        
         $sudoku = array(
             array('.','.',1,9,4,8,5,'.','.'),
             array('.','.',3,7,'.',6,1,'.','.'),
@@ -21,13 +26,14 @@
             array('.','.',7,1,'.',9,4,'.','.'),
             array('.','.',5,8,6,3,7,'.','.')
         );
-
-        for($i=0;$i<$sudoku.count;$i++){
-            for($j=0;$j<sudoku[$i].count;$j++){
-                echo $sudoku[$i][$j];
-            }
+    }
+    
+    for($i=0;$i<$sudoku.count;$i++){
+        for($j=0;$j<sudoku[$i].count;$j++){
+            echo $sudoku[$i][$j];
         }
     }
+
     echo "<p>Medio</p>";
 
     function medio(){
