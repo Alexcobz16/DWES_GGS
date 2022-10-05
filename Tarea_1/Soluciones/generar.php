@@ -6,11 +6,13 @@
 <body>
 <?php
 require('definir.php');
-    echo "<p>","GGS: ",$_GET[$sudoku.count],"</p>";
-
 echo "<table>";
-    for($i=0;$i<$_REQUEST['sudoku'.count];$i++){
-    echo "<p>",$_REQUEST['sudoku'.count],"</p>";
+    for($i=0;$i<$sudoku.count;$i++){
+        echo "<tr>";
+        for($j=0;$j<$sudoku($i).count;$j++){
+            echo "<td>",$sudoku[$i][$j],"</td>";
+        }
+        echo "</tr>";
     }
 echo "</table>";
 ?>
