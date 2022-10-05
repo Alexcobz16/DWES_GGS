@@ -9,8 +9,8 @@ require('definir.php');
 echo "<table>";
     for($i=0;$i<$sudoku.count;$i++){
         echo "<tr>";
-        for($j=0;$j<$sudoku($i).count;$j++){
-            echo "<td>",$sudoku[$i][$j],"</td>";
+        for($j=0;$j<$sudoku[$i].count;$j++){
+            echo "<td>",print($sudoku[$i][$j]),"</td>";
         }
         echo "</tr>";
     }
