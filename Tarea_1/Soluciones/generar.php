@@ -1,16 +1,18 @@
 <html>
 <head>
     <title>Sudoku</title>
+    <meta charset="utf-8">
+    
 </head>
 <body>
     <?php
+    /**
+     * Realizar un fichero php donde se definan tres arrays de 9x9 elementos enteros,
+     * para almacenar los siguientes 3 sudokus iniciales de tres niveles de dificultad distintos:
+     */
+
     $limite = 9;
-
-    echo "<p>Fácil</p>";
-
     $sudoku = array();
-
-    facil($sudoku);
 
     function facil($sudoku){
         $dificultad = 1;
@@ -28,13 +30,6 @@
         );
     }
     
-    for($i=0;$i<$sudoku.count;$i++){
-        for($j=0;$j<sudoku[$i].count;$j++){
-            echo $sudoku[$i][$j];
-        }
-    }
-
-    echo "<p>Medio</p>";
 
     function medio(){
         $dificultad = 1;
@@ -51,8 +46,6 @@
         );
     }
 
-    echo "<p>Difícil</p>";
-
     function dificil(){
         $dificultad = 1;
         $sudoku = array(
@@ -67,9 +60,6 @@
             array('.',7,'.',2,'.','.','.',1,8)
         );
     }
-
-
-
     ?>
 </body>
 </html>
