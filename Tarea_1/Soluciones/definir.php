@@ -10,7 +10,8 @@
      * Realizar un fichero php donde se definan tres arrays de 9x9 elementos enteros,
      * para almacenar los siguientes 3 sudokus iniciales de tres niveles de dificultad distintos:
      */
-        $sudoku = array (
+     global $sudoku;  
+     $sudoku = array (
         array(
             array('.','.',1,9,4,8,5,'.','.'),
             array('.','.',3,7,'.',6,1,'.','.'),
