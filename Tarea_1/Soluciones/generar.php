@@ -16,7 +16,6 @@ foreach ($sudoku as $tipo) {
         echo '</tr>';
     }
     echo "</table>";
-
 }
 
 ?>
