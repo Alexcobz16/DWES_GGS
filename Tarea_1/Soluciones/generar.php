@@ -1,8 +1,9 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-</head>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
 <body>
 <?php
 require('definir.php');
@@ -30,7 +31,11 @@ foreach ($sudoku as $tipo) {
         echo '<tr>';
 
         foreach ($fila as $casilla) {
-            echo '<td>',$casilla,'</td>';
+            if($casilla == '.'){
+                echo '<td class="huecos">',$casilla,'</td>';
+            }else{
+                echo '<td class="pistas">',$casilla,'</td>';
+            }
         }
 
         echo '</tr>';
