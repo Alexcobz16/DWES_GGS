@@ -13,15 +13,15 @@ foreach ($sudoku as $tipo) {
 
     switch ($counter) {
         case '1':
-            echo "Fácil";
+            echo "<th>Fácil</th>";
             break;
 
         case '2':
-            echo "Medio";
+            echo "<th>Medio</th>";
             break;
         
         case '3':
-            echo "Difícil";
+            echo "<th>Difícil</th>";
             break;
     }
 
