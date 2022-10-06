@@ -32,9 +32,9 @@ foreach ($sudoku as $tipo) {
 
         foreach ($fila as $casilla) {
             if($casilla == '.'){
-                echo '<td class="huecos">',$casilla,'</td>';
+                echo "<td class='huecos'>\t",$casilla,"\t</td>";
             }else{
-                echo '<td class="pistas">',$casilla,'</td>';
+                echo "<td class='pistas'>\t",$casilla,"\t</td>";
             }
         }
 
