@@ -7,12 +7,12 @@
 <?php
 require('definir.php');
 echo "<table>";
-    for($i=0;$i<$sudoku.count;$i++){
-        echo "<tr>";
-        for($j=0;$j<$sudoku[$i].count;$j++){
-            echo "<td>",print($sudoku[$i][$j]),"</td>";
+    foreach ($sudoku as $fila) {
+        echo '<tr>';
+        foreach ($fila as $casilla) {
+            echo '<td>',$casilla,'</td>';
         }
-        echo "</tr>";
+        echo '</tr>';
     }
 echo "</table>";
 ?>
