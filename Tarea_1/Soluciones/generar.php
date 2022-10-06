@@ -25,13 +25,17 @@ foreach ($sudoku as $tipo) {
     }
 
     echo "<table>";
+
     foreach ($tipo as $fila) {
         echo '<tr>';
+
         foreach ($fila as $casilla) {
             echo '<td>',$casilla,'</td>';
         }
+
         echo '</tr>';
     }
+    
     echo "</table>";
     $counter++;
 }
