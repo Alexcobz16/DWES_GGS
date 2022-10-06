@@ -6,15 +6,19 @@
 <body>
 <?php
 require('definir.php');
-echo "<table>";
-    foreach ($sudoku as $fila) {
+foreach ($sudoku as $tipo) {
+    echo "<table>";
+    foreach ($tipo as $fila) {
         echo '<tr>';
         foreach ($fila as $casilla) {
             echo '<td>',$casilla,'</td>';
         }
         echo '</tr>';
     }
-echo "</table>";
+    echo "</table>";
+
+}
+
 ?>
 </body>
 </html>
