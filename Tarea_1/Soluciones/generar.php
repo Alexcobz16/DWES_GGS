@@ -7,9 +7,11 @@
 <body>
 <?php
 require('definir.php');
+
 $counter = 1;
 
 foreach ($sudoku as $tipo) {
+    echo "<div class='sudokuContainer'>";
 
     switch ($counter) {
         case '1':
@@ -32,16 +34,16 @@ foreach ($sudoku as $tipo) {
 
         foreach ($fila as $casilla) {
             if($casilla == '.'){
-                echo "<td class='huecos'>\t",$casilla,"\t</td>";
+                echo "<td class='huecos'>",$casilla,"</td>";
             }else{
-                echo "<td class='pistas'>\t",$casilla,"\t</td>";
+                echo "<td class='pistas'>",$casilla,"</td>";
             }
         }
 
         echo '</tr>';
     }
     
-    echo "</table>";
+    echo "</table></div>";    
     $counter++;
 }
 

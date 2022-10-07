@@ -5,6 +5,16 @@ table,th,td {
     padding: 10px;
 }
 
+table{
+    justify-content: left;
+    column-gap: 20px;
+}
+
+.sudokuContainer {
+    display: inline-block;
+    width:30%;
+}
+
 .huecos {
     color: blue;
 }
