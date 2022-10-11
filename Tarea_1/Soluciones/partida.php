@@ -1,14 +1,14 @@
-<?php require('generar.php');
+<?php include_once('index1.php');
 
-switch ($_POST['dificultad']) {
+switch ($dificultad) {
     case '1':
-        echo "Imprime sudoku facil";
+        echo "<p>Imprime sudoku facil</p>";
         break;
     case '2':
-        echo "Imprime sudoku medio";
+        echo "<p>Imprime sudoku medio</p>";
         break;
     case '3':
-        echo "Imprime sudoku dificil";
+        echo "<p>Imprime sudoku dificil</p>";
         break;    
     }
 
