@@ -12,7 +12,7 @@
         <br/>
         <form method="post">  
             <p><input type="radio" value="1" name="dificultad">Fácil <input type="radio" value="2" name="dificultad">Medio <input type="radio" value="3" name="dificultad">Difícil</p>
-            <input type="submit" value="Jugar">
+            <a href="index2.php"><input type="submit" value="Jugar"></a>
         </form>
     </body>
 </html>
