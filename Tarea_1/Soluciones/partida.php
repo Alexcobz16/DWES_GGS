@@ -4,6 +4,8 @@ $dificultad = $_POST['dificultad'];
 
 switch ($dificultad) {
     case '1':
+        echo "<div>";
+        echo "<p>No carga el facil</p>";
         echo "<table>";
 
         for($i=0;$i<$sudoku[$dificultad-1].count;$i++){
@@ -18,9 +20,14 @@ switch ($dificultad) {
             }
             echo '</tr>';
         }
-        echo "</table>";    
+        echo "</table>";
+        echo "</div>";  
         break;
     case '2':
+        echo "<div>";
+
+        echo "<p>No carga el medio</p>";
+
         echo "<table>";
 
         for($i=0;$i<$sudoku[$dificultad-1].count;$i++){
@@ -35,9 +42,14 @@ switch ($dificultad) {
             }
             echo '</tr>';
         }
-        echo "</table>";  
+        echo "</table>";
+        echo "</div>";
         break;
     case '3':
+        echo "<div>";
+
+        echo "<p>No carga el dificil</p>";
+
         echo "<table>";
 
         for($i=0;$i<$sudoku[$dificultad-1].count;$i++){
@@ -53,6 +65,8 @@ switch ($dificultad) {
             echo '</tr>';
         }
         echo "</table>";  
+        echo "</div>";
+
         break; 
 }
 ?>
