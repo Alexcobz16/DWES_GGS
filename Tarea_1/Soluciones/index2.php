@@ -14,7 +14,12 @@
     <body>
         <br/>
         <form method="post">  
-
+            <p>Número <input value="valor"></p>
+            <p>Fila <input value="fila"></p>
+            <p>Columna <input value="columna"></p>
+            <input type="submit" value="insertar">
+            <input type="submit" value="eliminar">
+            <input type="submit" value="candidatos">
         </form>
     </body>
 </html>
