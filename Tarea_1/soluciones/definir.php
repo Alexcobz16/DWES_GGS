@@ -43,6 +43,9 @@
             array('.',7,'.',2,'.','.','.',1,8)
         )
     );
+
+    $sudokuCodificado = base64_encode(serialize($sudoku));
+
     ?>
 </body>
 </html>

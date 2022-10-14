@@ -1,4 +1,8 @@
-<?php require('definir.php');
+<?php
+
+$sudoku = unserialize(base64_decode($sudokuCodificado));
+
+
 
 $dificultad = $_POST['dificultad'];
 $inicio = false;
@@ -72,8 +76,9 @@ switch ($dificultad) {
 
 $inicio = true;
 
-}else{
-    
+}
+
+function mostrar(){
     echo "<div>";
     echo "<table>";  
 
@@ -96,6 +101,14 @@ $inicio = true;
     echo "</table>";
     echo "</div>";  
 
+}  
+
+function insertar(){
+    if($_POST['valor']==$sudoku[($_POST['fila']-1)][($_POST['columna']-1)]){
+        echo "<p>En esta casilla no se puede introducir</p>";
+    }else{
+
+    }
 }
 
 ?>
