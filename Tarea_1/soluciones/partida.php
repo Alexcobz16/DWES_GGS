@@ -4,6 +4,7 @@ $dificultad = $_POST['dificultad'];
 $inicio = false;
 
 
+
 if($inicio == false){
 
 switch ($dificultad) {
