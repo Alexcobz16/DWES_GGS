@@ -20,19 +20,17 @@ switch ($dificultad) {
             echo '</tr>';
         }
         echo "</table>";
-        echo "</div>";  
+        echo "</div>";
+        $sudokuPartida = $sudoku[$dificultad-1];
         break;
     case '2':
         echo "<div>";
-
-        echo "<p>No carga el medio</p>";
-
         echo "<table>";
 
-        for($i=0;$i<$sudoku[$dificultad-1].count;$i++){
+        for($i=0;$i<count($sudoku[$dificultad-1]);$i++){
             echo '<tr>';
 
-            for($j=0;$j<$sudoku[$dificultad-1][$i].count;$j++){
+            for($j=0;$j<count($sudoku[$dificultad-1][$i]);$j++){
                 if($sudoku[$dificultad-1][$i][$j] == '.'){
                     echo "<td class='huecos'>",$sudoku[$dificultad-1][$i][$j],"</td>";
                 }else{
@@ -42,19 +40,17 @@ switch ($dificultad) {
             echo '</tr>';
         }
         echo "</table>";
-        echo "</div>";
+        echo "</div>";  
+        $sudokuPartida = $sudoku[$dificultad-1];
         break;
     case '3':
         echo "<div>";
-
-        echo "<p>No carga el dificil</p>";
-
         echo "<table>";
 
-        for($i=0;$i<$sudoku[$dificultad-1].count;$i++){
+        for($i=0;$i<count($sudoku[$dificultad-1]);$i++){
             echo '<tr>';
 
-            for($j=0;$j<$sudoku[$dificultad-1][$i].count;$j++){
+            for($j=0;$j<count($sudoku[$dificultad-1][$i]);$j++){
                 if($sudoku[$dificultad-1][$i][$j] == '.'){
                     echo "<td class='huecos'>",$sudoku[$dificultad-1][$i][$j],"</td>";
                 }else{
@@ -63,9 +59,38 @@ switch ($dificultad) {
             }
             echo '</tr>';
         }
-        echo "</table>";  
-        echo "</div>";
-
+        echo "</table>";
+        echo "</div>";  
+        $sudokuPartida = $sudoku[$dificultad-1];
         break; 
 }
+
+$continue = true;
+
+while($continue){
+    
+    echo "<div>";
+    echo "<table>";  
+
+    for($i=0;$i<count($sudokuPartida);$i++){
+        
+        echo '<tr>';
+
+        for($j=0;$j<count($sudokuPartida[$i]);$j++){
+            if($sudokuPartida[$i][$j] == '.'){
+                echo "<td class='huecos'>",$sudokuPartida[$i][$j],"</td>";
+            }else{
+                echo "<td class='pistas'>",$sudokuPartida[$i][$j],"</td>";
+            }
+        }
+
+        echo '<tr>';
+
+    }
+
+    echo "</table>";
+    echo "</div>";  
+
+}
+
 ?>

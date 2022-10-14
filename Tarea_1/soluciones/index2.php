@@ -14,9 +14,9 @@
     <body>
         <br/>
         <form method="post">  
-            <p>Número <input value="valor"></p>
-            <p>Fila <input value="fila"></p>
-            <p>Columna <input value="columna"></p>
+            <p>Número <input type="number" name="valor" max="9" min="1" required></p>
+            <p>Fila <input type="number" name="fila" max="9" min="1" required></p>
+            <p>Columna <input type="number" name="columna" max="9" min="1" required></p>
             <input type="submit" value="insertar">
             <input type="submit" value="eliminar">
             <input type="submit" value="candidatos">
