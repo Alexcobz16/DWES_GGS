@@ -72,11 +72,7 @@ switch ($dificultad) {
 $inicio = true;
 
 }else{
-
-while($continue){
     
-
-
     echo "<div>";
     echo "<table>";  
 
@@ -101,5 +97,4 @@ while($continue){
 
 }
 
-}
 ?>
