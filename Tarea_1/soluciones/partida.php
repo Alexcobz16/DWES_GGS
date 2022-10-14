@@ -107,8 +107,18 @@ function insertar(){
     if($_POST['valor']==$sudoku[($_POST['fila']-1)][($_POST['columna']-1)]){
         echo "<p>En esta casilla no se puede introducir</p>";
     }else{
-
+       $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = $_POST['valor'];
     }
+    mostrar();
+}
+
+function eliminar(){
+    if(is_numeric($sudoku[($_POST['fila']-1)][($_POST['columna']-1)]){
+        echo "<p>En esta casilla no se puede eliminar</p>";
+    }else{
+       $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = '.';
+    }
+    mostrar();
 }
 
 ?>
