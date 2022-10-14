@@ -1,6 +1,10 @@
 <?php require('definir.php');
 
 $dificultad = $_POST['dificultad'];
+$inicio = false;
+
+
+if($inicio == false){
 
 switch ($dificultad) {
     case '1':
@@ -65,10 +69,14 @@ switch ($dificultad) {
         break; 
 }
 
-$continue = true;
+$inicio = true;
+
+}else{
 
 while($continue){
     
+
+
     echo "<div>";
     echo "<table>";  
 
@@ -93,4 +101,5 @@ while($continue){
 
 }
 
+}
 ?>
