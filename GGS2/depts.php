@@ -1,8 +1,11 @@
-
 <?php 
 
-$conexion = new mysqli('localhost', 'usuario', 'contraseña', 'base_de_datos');
+$conexion = mysqli_connection('localhost', 'root', '1234', 'employees');
 
-print "<p>"; print $conexion->server_info; print "</p>";
+$select = $conexion->query('SELECT "dept_no", "dept_name" FROM departments');
+$conexion->commit();
+while($departamento = $select->fetch_object()){
+    print "<p> $departamento->dept_no de nombre $departamento->dept_name </p>";
+}
 
 ?>
