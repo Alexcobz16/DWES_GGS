@@ -1,13 +1,7 @@
-<?php
-
-$sudoku = unserialize(base64_decode($sudokuCodificado));
-
-
+<?php require('definir.php');
 
 $dificultad = $_POST['dificultad'];
 $inicio = false;
-
-
 
 if($inicio == false){
 
@@ -75,7 +69,14 @@ switch ($dificultad) {
 }
 
 $inicio = true;
+}
 
+if($_POST['accion']=="insertar"){
+    insertar();
+}else if($_POST['accion']=="eliminar"){
+    eliminar();
+}else if($_POST['accion']=="candidatos"){
+    candidatos();
 }
 
 function mostrar(){
@@ -115,10 +116,9 @@ function insertar(){
 function eliminar(){
     if(is_numeric($sudoku[($_POST['fila']-1)][($_POST['columna']-1)]){
         echo "<p>En esta casilla no se puede eliminar</p>";
-    }else{
+   }else{
        $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = '.';
     }
     mostrar();
 }
-
 ?>
