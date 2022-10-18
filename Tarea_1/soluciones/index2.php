@@ -11,7 +11,7 @@
     <body>
         <br/>
         <form method="post">  
-            <p>Número <input type="number" name="valor" max="9" min="1" required></p>
+            <p>Número <input type="number" name="valor" max="9" min="1"></p>
             <p>Fila <input type="number" name="fila" max="9" min="1" required></p>
             <p>Columna <input type="number" name="columna" max="9" min="1" required></p>
             <input type="submit" value="insertar" name="accion">
