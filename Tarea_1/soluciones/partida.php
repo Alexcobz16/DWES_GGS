@@ -1,7 +1,10 @@
 <?php require('definir.php');
 
-$dificultad = $_POST['dificultad'];
 $inicio = false;
+
+if(!$inicio){
+    $dificultad = $_POST['dificultad'];
+}
 
 if($inicio == false){
 
@@ -74,7 +77,7 @@ $inicio = true;
 if($_POST['accion']=="insertar"){
     insertar();
 }else if($_POST['accion']=="eliminar"){
-    eliminar();
+    eliiminar();
 }else if($_POST['accion']=="candidatos"){
     candidatos();
 }
@@ -121,4 +124,5 @@ function eliminar(){
     }
     mostrar();
 }
+
 ?>
