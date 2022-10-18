@@ -2,9 +2,7 @@
 
 $inicio = false;
 
-if(!$inicio){
-    $dificultad = $_POST['dificultad'];
-}
+$dificultad = $_POST['dificultad'];
 
 if($inicio == false){
 
@@ -27,7 +25,7 @@ switch ($dificultad) {
         }
         echo "</table>";
         echo "</div>";
-        $sudokuPartida = $sudoku[$dificultad-1];
+
         break;
     case '2':
         echo "<div>";
@@ -47,7 +45,6 @@ switch ($dificultad) {
         }
         echo "</table>";
         echo "</div>";  
-        $sudokuPartida = $sudoku[$dificultad-1];
         break;
     case '3':
         echo "<div>";
@@ -67,20 +64,25 @@ switch ($dificultad) {
         }
         echo "</table>";
         echo "</div>";  
-        $sudokuPartida = $sudoku[$dificultad-1];
         break; 
 }
 
 $inicio = true;
+$sudokuPartida = array($sudoku[$dificultad-1]);
 }
 
-if($_POST['accion']=="insertar"){
-    insertar();
-}else if($_POST['accion']=="eliminar"){
-    eliiminar();
-}else if($_POST['accion']=="candidatos"){
-    candidatos();
+//
+
+if($inicio){
+    if($_POST['accion']=="insertar"){
+        insertar();
+    }else if($_POST['accion']=="eliminar"){
+        eliiminar();
+    }else if($_POST['accion']=="candidatos"){
+        candidatos();
+    }
 }
+
 
 function mostrar(){
     echo "<div>";
@@ -108,21 +110,19 @@ function mostrar(){
 }  
 
 function insertar(){
-    if($_POST['valor']==$sudoku[($_POST['fila']-1)][($_POST['columna']-1)]){
+    if(isset($sudoku[($_POST['fila']-1)][($_POST['columna']-1)])){
         echo "<p>En esta casilla no se puede introducir</p>";
     }else{
        $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = $_POST['valor'];
     }
-    mostrar();
 }
 
 function eliminar(){
-    if(is_numeric($sudoku[($_POST['fila']-1)][($_POST['columna']-1)]){
-        echo "<p>En esta casilla no se puede eliminar</p>";
-   }else{
-       $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = '.';
-    }
-    mostrar();
+    if(isset($sudoku[($_POST['fila']-1)][($_POST['columna']-1)])){
+        print("<p>En esta casilla no se puede eliminar</p>");
+   } else{
+    $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = '.';
+   }
 }
-
+print_r($sudokuPartida);
 ?>

@@ -17,6 +17,7 @@
             <input type="submit" value="insertar" name="accion">
             <input type="submit" value="eliminar" name="accion">
             <input type="submit" value="candidatos" name="accion">
+            <input name="dificultad" type="hidden" value="<?php $_POST['dificultad'] ?>">
         </form>
     </body>
 </html>
