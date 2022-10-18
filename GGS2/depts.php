@@ -1,11 +1,14 @@
-<?php 
+<?php ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$conexion = mysqli_connection('localhost', 'root', '1234', 'employees');
+@ $conexion = new mysqli('localhost', 'root', '', 'employees');
+    $error = $conexion->connect_errno;
 
-$select = $conexion->query('SELECT "dept_no", "dept_name" FROM departments');
-$conexion->commit();
-while($departamento = $select->fetch_object()){
-    print "<p> $departamento->dept_no de nombre $departamento->dept_name </p>";
-}
-
+    if($error != 0){
+        echo "<p>F bro el servidor tiene errores</p>";
+        exit();
+    }else{
+        print $conexion->server_info;
+    }
 ?>
