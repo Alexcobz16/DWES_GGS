@@ -1,5 +1,6 @@
 <?php require('definir.php');
 
+echo '<link rel="stylesheet" href="css/style.css">';
 
 $dificultad = $_POST['dificultad'];
 
