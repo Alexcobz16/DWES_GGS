@@ -14,9 +14,9 @@
             <p>Número <input type="number" name="valor" max="9" min="1"></p>
             <p>Fila <input type="number" name="fila" max="9" min="1" required></p>
             <p>Columna <input type="number" name="columna" max="9" min="1" required></p>
-            <input type="submit" value="insertar" name="accion">
-            <input type="submit" value="eliminar" name="accion">
-            <input type="submit" value="candidatos" name="accion">
+            <input type="submit" value="insertar" name="insertar">
+            <input type="submit" value="eliminar" name="eliminar">
+            <input type="submit" value="candidatos" name="candidatos">
             <input name="dificultad" type="hidden" value="<?php $_POST['dificultad'] ?>">
         </form>
     </body>

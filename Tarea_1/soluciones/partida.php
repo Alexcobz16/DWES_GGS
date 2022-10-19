@@ -78,11 +78,11 @@ $sudokuPartida = array($sudoku[$dificultad-1]);
 
 
 if($inicio == true){
-    if($_POST['accion']=="insertar"){
+    if(isset($_POST['insertar'])){
         insertar();
-    }else if($_POST['accion']=="eliminar"){
+    }else if(isset($_POST['eliminar'])){
         eliiminar();
-    }else if($_POST['accion']=="candidatos"){
+    }else ifisset(($_POST['candidatos'])){
         candidatos();
     }
     mostrar();
