@@ -1,8 +1,11 @@
 <?php require('definir.php');
 
-$inicio = false;
 
 $dificultad = $_POST['dificultad'];
+
+function iniciar(){
+    static $inicio = false;
+}
 
 if($inicio == false){
 
@@ -115,6 +118,7 @@ function insertar(){
     }else{
        $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = $_POST['valor'];
     }
+    mostrar();
 }
 
 function eliminar(){
@@ -123,6 +127,7 @@ function eliminar(){
    } else{
     $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = '.';
    }
+   mostrar();
 }
-print_r($sudokuPartida);
+
 ?>
