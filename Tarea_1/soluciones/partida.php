@@ -1,8 +1,8 @@
 <?php require('definir.php');
 
 echo '<link rel="stylesheet" href="css/style.css">';
-
 $dificultad = $_POST['dificultad'];
+
 
 function iniciar(){
     static $inicio = false;
@@ -81,54 +81,57 @@ if($inicio == true){
     if(isset($_POST['insertar'])){
         insertar();
     }else if(isset($_POST['eliminar'])){
-        eliiminar();
-    }else ifisset(($_POST['candidatos'])){
+        eliminar();
+    }else if (isset(($_POST['candidatos']))){
         candidatos();
     }
     mostrar();
 }
 
-
-function mostrar(){
-    echo "<div>";
-    echo "<table>";  
-
-    for($i=0;$i<count($sudokuPartida);$i++){
-        
-        echo '<tr>';
-
-        for($j=0;$j<count($sudokuPartida[$i]);$j++){
-            if($sudokuPartida[$i][$j] == '.'){
-                echo "<td class='huecos'>",$sudokuPartida[$i][$j],"</td>";
-            }else{
-                echo "<td class='pistas'>",$sudokuPartida[$i][$j],"</td>";
+    function mostrar(){
+        echo "<div>";
+        echo "<table>";  
+    
+        for($i=0;$i<count($sudokuPartida);$i++){
+            
+            echo '<tr>';
+    
+            for($j=0;$j<count($sudokuPartida[$i]);$j++){
+                if($sudokuPartida[$i][$j] == '.'){
+                    echo "<td class='huecos'>",$sudokuPartida[$i][$j],"</td>";
+                }else{
+                    echo "<td class='pistas'>",$sudokuPartida[$i][$j],"</td>";
+                }
             }
+    
+            echo '<tr>';
+    
         }
-
-        echo '<tr>';
-
+    
+        echo "</table>";
+        echo "</div>";  
+    
+    }  
+    
+    function insertar(){
+        if(isset($sudoku[($_POST['fila']-1)][($_POST['columna']-1)])){
+            echo "<p>En esta casilla no se puede introducir</p>";
+        }else{
+           $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = $_POST['valor'];
+        }
     }
-
-    echo "</table>";
-    echo "</div>";  
-
-}  
-
-function insertar(){
-    if(isset($sudoku[($_POST['fila']-1)][($_POST['columna']-1)])){
-        echo "<p>En esta casilla no se puede introducir</p>";
-    }else{
-       $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = $_POST['valor'];
+    
+    function eliminar(){
+        if(isset($sudoku[($_POST['fila']-1)][($_POST['columna']-1)])){
+            print("<p>En esta casilla no se puede eliminar</p>");
+       } else{
+        $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = '.';
+       }
     }
+    
 }
 
-function eliminar(){
-    if(isset($sudoku[($_POST['fila']-1)][($_POST['columna']-1)])){
-        print("<p>En esta casilla no se puede eliminar</p>");
-   } else{
-    $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = '.';
-   }
-}
+
 
 
 ?>

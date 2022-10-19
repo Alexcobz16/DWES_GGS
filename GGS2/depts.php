@@ -9,6 +9,10 @@ error_reporting(E_ALL);
         echo "<p>F bro el servidor tiene errores</p>";
         exit();
     }else{
-        print $conexion->server_info;
-    }
+
+    
 ?>
+
+
+
+<?php } ?>
