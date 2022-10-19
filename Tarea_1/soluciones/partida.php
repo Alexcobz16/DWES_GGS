@@ -76,7 +76,7 @@ $sudokuPartida = array($sudoku[$dificultad-1]);
 }
 
 
-if($inicio){
+if($inicio == true){
     if($_POST['accion']=="insertar"){
         insertar();
     }else if($_POST['accion']=="eliminar"){
@@ -84,6 +84,7 @@ if($inicio){
     }else if($_POST['accion']=="candidatos"){
         candidatos();
     }
+    mostrar();
 }
 
 
@@ -118,7 +119,6 @@ function insertar(){
     }else{
        $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = $_POST['valor'];
     }
-    mostrar();
 }
 
 function eliminar(){
@@ -127,7 +127,7 @@ function eliminar(){
    } else{
     $sudokuPartida[($_POST['fila']-1)][($_POST['columna']-1)] = '.';
    }
-   mostrar();
 }
+
 
 ?>
