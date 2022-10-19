@@ -74,7 +74,6 @@ $inicio = true;
 $sudokuPartida = array($sudoku[$dificultad-1]);
 }
 
-//
 
 if($inicio){
     if($_POST['accion']=="insertar"){
