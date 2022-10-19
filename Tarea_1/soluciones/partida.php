@@ -71,6 +71,7 @@ switch ($dificultad) {
 }
 
 $inicio = true;
+
 $sudokuPartida = array($sudoku[$dificultad-1]);
 }
 
