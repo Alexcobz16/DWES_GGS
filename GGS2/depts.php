@@ -46,9 +46,12 @@ if ($error != 0) {
       $clave = array_keys($_POST['delete']); //Array_keys obtiene un array cuyos valores son las claves del array pasado como parámetro (y sus claves son índices 0, 1, 2...)
       $clave = $clave[0];
       
-      echo '<p>He pulsado eliminar en la clave '.$clave.'</p>';
+      $conexion->query("DELETE FROM departments WHERE dept_no = '$clave'");
+
     }else if(isset($_POST['add_button'])){
       //Aquí gestionamos añadir
+      $nombre = $_POST['new_department_name'];
+      $conexion->query("INSERT INTO departments (dept_no, dept_name) VALUES '$codigo', '$nombre'");
     }else if(isset($_POST['update_button'])){
       //Aquí gestionamos el actualizar
     }
@@ -67,7 +70,7 @@ if ($error != 0) {
 ?>
   <div class="mainCointainer"> 
     <h1>Departamentos</h1>
-    <form action="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/pluginfile.php/768848/mod_resource/content/2/<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
        <div class="addContainer">
          <input type="submit" value="+" name="add_button"> <input type="text" value="" placeholder="Nombre nuevo departamento" name="new_department_name"> 
        </div>
