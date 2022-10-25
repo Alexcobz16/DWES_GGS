@@ -65,7 +65,7 @@ if ($error != 0) {
     
       //echo '<pre>'.print_r($departamento).'</pre>';
     
-    
+
 
 ?>
   <div class="mainCointainer"> 
