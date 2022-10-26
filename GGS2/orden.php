@@ -1,20 +1,19 @@
-<?php 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php
 
-$conexion = new mysqli ('localhost', 'root', '', 'employees');
+function getPrimaryKey($connection){
+  //Primero hacíamos un select de todos los ids de los departamentos ordenados
+  
+  if($results = $connection->query('SELECT dept_no FROM departments ORDER BY dept_no DESC')){
+    $array_results = $results->fetch_array();
+    $dept_no = reset($array_results);
+    preg_match('/d([0-9]{3})/', $dept_no , $matches, PREG_OFFSET_CAPTURE);
+    $dept_no = reset($matches[1]);
+    $dept_no = $dept_no + 1;
+    
+    $dept_no = sprintf("%'.03d", $dept_no);
+        
+    return 'd'.$dept_no; 
+  }
+  
 
-$error = $conexion->connect_errno;
-$ultimo = '';
-if($error != 0){
-    echo "<p>hay errores en la conexion</p>";
-    exit();
-} else{
-    $numeros = $conexion->query('SELECT dept_no FROM departments ORDER BY dept_no ASC');
-
-    while($numero = $numeros->fetch_array()){
-        $ultimo = $numero['dept_no'];
-    }
 }
-?>
