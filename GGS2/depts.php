@@ -17,9 +17,6 @@
         margin: 1rem;
         display:inline-block;
       }
-      .error_message{
-        color: red;
-      }
     </style>
   </head>
    
@@ -32,9 +29,6 @@ require_once ('mysql_funciones.inc.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-
-
  $conexion = new mysqli('localhost', 'root', '', 'employees');
 
 $error = $conexion->connect_errno;
@@ -52,7 +46,6 @@ if ($error != 0) {
   
   //1.- Recogida y gestión de datos presentes en _POST
   if(isset($_POST)&&!empty($_POST)){
-  echo '<pre>'.print_r($_POST).'</pre>';
     if(isset($_POST['delete'])){
       //Aquí gestionamos el eliminar
       $clave = array_keys($_POST['delete']); //Array_keys obtiene un array cuyos valores son las claves del array pasado como parámetro (y sus claves son índices 0, 1, 2...)
