@@ -23,9 +23,7 @@
 <body>
 
 <?php
-
-require_once ('mysql_funciones.inc.php');
-
+require_once ('orden.inc.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -41,9 +39,6 @@ if ($error != 0) {
      exit();
 }else{
   //Este código se ejecuta si la conexión a la base de datos ha ido bien.
-  //0.- Inicialización de variables
-  $mensaje_error_cliente = '';
-  
   //1.- Recogida y gestión de datos presentes en _POST
   if(isset($_POST)&&!empty($_POST)){
     if(isset($_POST['delete'])){
@@ -51,23 +46,24 @@ if ($error != 0) {
       $clave = array_keys($_POST['delete']); //Array_keys obtiene un array cuyos valores son las claves del array pasado como parámetro (y sus claves son índices 0, 1, 2...)
       $clave = $clave[0];
       
-      if(!$conexion->query('DELETE FROM departments WHERE dept_no = \''.$clave.'\'')||($conexion->affected_rows == 0)){
-        $mensaje_error_cliente = 'Se ha jodio el asunto colega';
-      }
+      $conexion->query("DELETE FROM departments WHERE dept_no = '$clave'");
+
     }else if(isset($_POST['add_button'])){
       //Aquí gestionamos añadir
-      //echo '<pre>'.print_r($_POST).'</pre>';
-      
+      $nombre = $_POST['new_department_name'];
       $id = getPrimaryKey($conexion);
-      
-      if(!$conexion->query('INSERT INTO departments (dept_no, dept_name) VALUES (\''.$id.'\', \''.$_POST['new_department_name'].'\')')){
-        $mensaje_error_cliente = 'Houston tenemos un problema, el mensaje de error es:'.$conexion->error;
-      }else{
-        $mensaje_error_cliente = 'Todo bien';
-      }
-      
+      $conexion->query("INSERT INTO departments (dept_no, dept_name) VALUES ('$id', '$nombre')");
     }else if(isset($_POST['update_button'])){
       //Aquí gestionamos el actualizar
+      $counter = 0;
+      $resultado = $conexion->query('SELECT * FROM departments');
+      $departamento = $resultado->fetch_array();
+      print_r($departamento['dept_name']);
+      echo "<br>";
+      print_r($_POST['name']);
+
+      $counter++;
+  
     }
   }
   
@@ -75,17 +71,21 @@ if ($error != 0) {
     //Me traigo todos los registros de la tabla departamento
     
     $resultado = $conexion->query('SELECT * FROM departments');
-     
+    
+      //echo '<pre>'.print_r($departamento).'</pre>';
+    
+
+
 ?>
   <div class="mainCointainer"> 
     <h1>Departamentos</h1>
-    <form action="https://educacionadistancia.juntadeandalucia.es/centros/sevilla/pluginfile.php/798460/mod_folder/content/0/<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
        <div class="addContainer">
          <input type="submit" value="+" name="add_button"> <input type="text" value="" placeholder="Nombre nuevo departamento" name="new_department_name"> 
        </div>
        <div class="registrosContainer">
          <?php while($departamento = $resultado->fetch_array()){?> 
-           <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"> <input type="text" value="<?php echo $departamento['dept_name']; ?>" name="name[<?php echo $departamento['dept_no']; ?>]"> <br>
+           <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"> <input type="text" value="<?php echo $departamento['dept_name'];?>" name="name[<?php echo $departamento['dept_name']; ?>]"> <br>
          
          <?php } ?>
          
@@ -96,9 +96,6 @@ if ($error != 0) {
        </div>
     </form>
   </div>
-  <div class="error_message"><p>
-    <?php echo $mensaje_error_cliente; ?>
-  </p></div>
   <?php 
     $conexion->close();
   }?>
