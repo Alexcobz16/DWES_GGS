@@ -23,6 +23,7 @@
 <body>
 
 <?php
+require_once ('orden.inc.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -40,7 +41,6 @@ if ($error != 0) {
   //Este código se ejecuta si la conexión a la base de datos ha ido bien.
   //1.- Recogida y gestión de datos presentes en _POST
   if(isset($_POST)&&!empty($_POST)){
-  echo '<pre>'.print_r($_POST).'</pre>';
     if(isset($_POST['delete'])){
       //Aquí gestionamos el eliminar
       $clave = array_keys($_POST['delete']); //Array_keys obtiene un array cuyos valores son las claves del array pasado como parámetro (y sus claves son índices 0, 1, 2...)
@@ -51,9 +51,19 @@ if ($error != 0) {
     }else if(isset($_POST['add_button'])){
       //Aquí gestionamos añadir
       $nombre = $_POST['new_department_name'];
-      $conexion->query("INSERT INTO departments (dept_no, dept_name) VALUES '$codigo', '$nombre'");
+      $id = getPrimaryKey($conexion);
+      $conexion->query("INSERT INTO departments (dept_no, dept_name) VALUES ('$id', '$nombre')");
     }else if(isset($_POST['update_button'])){
       //Aquí gestionamos el actualizar
+      $counter = 0;
+      $resultado = $conexion->query('SELECT * FROM departments');
+      $departamento = $resultado->fetch_array();
+      print_r($departamento['dept_name']);
+      echo "<br>";
+      print_r($_POST['name']);
+
+      $counter++;
+  
     }
   }
   
@@ -61,11 +71,10 @@ if ($error != 0) {
     //Me traigo todos los registros de la tabla departamento
     
     $resultado = $conexion->query('SELECT * FROM departments');
-    echo '<pre>'.print_r($resultado).'</pre>';
     
       //echo '<pre>'.print_r($departamento).'</pre>';
     
-    
+
 
 ?>
   <div class="mainCointainer"> 
@@ -76,7 +85,7 @@ if ($error != 0) {
        </div>
        <div class="registrosContainer">
          <?php while($departamento = $resultado->fetch_array()){?> 
-           <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"> <input type="text" value="<?php echo $departamento['dept_name']; ?>" name="name[<?php echo $departamento['dept_no']; ?>]"> <br>
+           <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"> <input type="text" value="<?php echo $departamento['dept_name'];?>" name="name[<?php echo $departamento['dept_name']; ?>]"> <br>
          
          <?php } ?>
          
