@@ -1,8 +1,28 @@
-<?php include('generar.php'); 
-      echo "<br/>";
-
-      generar();
+<?php require_once('generar.php'); ?>
+<?php for($i=0;$i<3;$i++){ ?>
+    <div class='sudokuContainer'>
+    <?php
+    switch($i){
+        case 0:?> <th>Fácil</th>
+        <?php
+        generar($sudokuFacil);
+            break; 
+        case 1:?> <th>Medio</th>
+        <?php
+        generar($sudokuMedio);
+            break;
+        case 2:
+            ?> <th>Difícil</th>
+            <?php
+        generar($sudokuDificil);
+            break;
+    }
+    ?>
+    </div>
+<?php
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>

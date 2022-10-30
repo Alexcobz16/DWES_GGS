@@ -1,80 +1,57 @@
-<?php 
-    require('generar.php');
-    if(isset($_POST['dificultad'])){
-        $dificultad = $_POST['dificultad'];
+<?php require_once('generar.php'); 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+if(isset($_POST['dificultad'])){
+    switch($_POST['dificultad']){
+        case 1:
+            $sudoku = generar($sudokuFacil);
+            $original = $sudokuFacil;
+            break;
+        case 2:
+            $sudoku = generar($sudokuMedio);
+            $original = $sudokuMedio;
+            break;
+        case 3:
+            $sudoku = generar($sudokuDificil);
+            $original = $sudokuDificil;
+            break;
     }
-
-    if(isset($_POST['insertar'])||isset($_POST['eliminar'])||isset($_POST['candidatos'])){
-        if(isset($_POST['insertar'])){
-            insertar($_POST['sudoku']);
-
-        }else if(isset($_POST['eliminar'])){
-            eliminar($sudoku,$sudokuFacil,$sudokuMedio,$sudokuDificil,$dificultad);
-        }else if(isset($_POST['candidatos'])){
-            candidatos($sudoku);
-        }
-    }else{
-        switch($dificultad){
-            case 1:
-                $sudoku = $sudokuFacil;
-                break;
-            case 2:
-                $sudoku = $sudokuMedio;
-                break;
-            case 3:
-                $sudoku = $sudokuDificil;
-                break;
-           }
-           mostrar($sudoku);
-    }
-
-
-
-   function insertar($sudoku){
-     if(isset($_POST['valor']) && isset($_POST['fila']) && isset($_POST['columna'])){
-        if(!is_int(($sudoku[$_POST['fila']-1][$_POST['columna']-1]))){
-            $sudoku[($_POST['fila']-1)][($_POST['columna']-1)] = $_POST['valor'];
-        }else{
-            echo "No se puede insertar porque ya tienes un número ahí";
-        }
-    }else{
-        echo "Tienen que estar marcadas las tres casillas al insertar";
-    }
-    mostrar($sudoku);
+    $dificultad = $_POST['dificultad'];
 }
 
-function eliminar($sudoku,$sudokuFacil,$sudokuMedio,$sudokuDificil){
-    if(isset($_POST['fila']) && isset($_POST['columna'])){
-        switch($dificultad){
-            case 1:
-                if(!is_int($sudokuFacil[$_POST['fila'][$_POST['columna']]])){
-                    $sudoku[$_POST['fila']][$_POST['columna']] = '.';
-                    echo "borra cosas 1";
-                }else{
-                    echo "No se puede borrar una posicion original";
-                }
-                break;
-            case 2:
-                if(!is_int($sudokuMedio[$_POST['fila'][$_POST['columna']]])){
-                    $sudoku[$_POST['fila']][$_POST['columna']] = '.';
-                    echo "borra cosas 2";
-                }else{
-                    echo "No se puede borrar una posicion original";
-                }
-                break;
-            case 3:
-                if(!is_int($sudokuDificil[$_POST['fila'][$_POST['columna']]])){
-                    $sudoku[$_POST['fila']][$_POST['columna']] = '.';
-                    echo "borra cosas 3";
-                }else{
-                    echo "No se puede borrar una posicion original";
-                }
-                break;
-        }
-    }
+if(isset($_POST['insertar'])&&!empty($_POST['valor'])&&!empty($_POST['fila'])&&!empty($_POST['columna'])){
+    $sudoku = unserialize(base64_decode($_POST['sudoku']));
+    $original = unserialize(base64_decode($_POST['original']));
+    $sudoku = insertar($sudoku,$_POST['valor'],$_POST['fila'],$_POST['columna'], $original);
+}else if(isset($_POST['eliminar'])&&!empty($_POST['fila'])&&!empty($_POST['columna'])){
+    $sudoku = unserialize(base64_decode($_POST['sudoku']));
+    $original = unserialize(base64_decode($_POST['original']));
+    $sudoku = eliminar($sudoku, $_POST['fila'], $_POST['columna'],$original);
+}else if(isset($_POST['candidatos'])&&!empty($_POST['fila'])&&!empty($_POST['columna'])){
+    $sudoku = unserialize(base64_decode($_POST['sudoku']));
+    candidatos();
 }
 
+function insertar($sudoku,$valor,$fila,$columna, $original){
 
+    if(($sudoku[$fila-1][$columna-1] == '.')&&($original[$fila-1][$columna-1] == '.')){
+        $sudoku[$fila-1][$columna-1] = intval($valor);
+    }
+    return $sudoku = generar($sudoku);
+}
+
+function eliminar($sudoku,$fila,$columna,$original){
+    if(($sudoku[$fila-1][$columna-1] != '.')&&($original[$fila-1][$columna-1] == '.')){
+        $sudoku[$fila-1][$columna-1] = '.';
+    }
+    return $sudoku = generar($sudoku);
+}
+
+function candidatos($sudoku,$fila,$columna){
+    if($sudoku[$fila-1][$columna-1] == '.'){
+
+    }
+}
 
 ?>
 
@@ -88,14 +65,15 @@ function eliminar($sudoku,$sudokuFacil,$sudokuMedio,$sudokuDificil){
     </head>
     <body>
         <br/>
-        <form method="post">  
+        <form method="post" action="partida.php">  
             <p>Número <input type="number" name="valor" max="9" min="1"></p>
             <p>Fila <input type="number" name="fila" max="9" min="1" required></p>
             <p>Columna <input type="number" name="columna" max="9" min="1" required></p>
-            <input type="hidden" value="<?php $sudoku; ?>" name="sudoku">
-            <input type="submit" value="insertar" name="insertar">
-            <input type="submit" value="eliminar" name="eliminar">
-            <input type="submit" value="candidatos" name="candidatos">
+            <input type="submit" value="Insertar" name="insertar">
+            <input type="submit" value="Eliminar" name="eliminar">
+            <input type="submit" value="Candidatos" name="candidatos">
+            <input type="hidden" name="sudoku" value="<?php echo base64_encode(serialize($sudoku)); ?>">
+            <input type="hidden" name="original" value="<?php echo base64_encode(serialize($original)); ?>">
         </form>
     </body>
 </html>

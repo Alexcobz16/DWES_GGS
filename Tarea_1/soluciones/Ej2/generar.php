@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
-<body>
-<?php
-
-$sudokuFacil = array(
+<?php $sudokuFacil = array(
     array('.','.',1,9,4,8,5,'.','.'),
     array('.','.',3,7,'.',6,1,'.','.'),
     array('.',5,'.','.','.','.','.',7,'.'),
@@ -42,50 +33,12 @@ $sudokuDificil = array(
     array('.','.','.',7,'.','.',6,'.',3),
     array('.',7,'.',2,'.','.','.',1,8)
 );
+?>
 
-function generar(){
-global $sudokuFacil, $sudokuMedio, $sudokuDificil;
+<?php 
 
-    for($i=0;$i<3;$i++){
-        echo "<div class='sudokuContainer'>";
-        switch($i){
-            case 0:
-                echo "<th>Facil</th>";
-                $sudoku = $sudokuFacil;
-                 break;
-            case 1:
-                echo "<th>Medio</th>";
-                $sudoku = $sudokuMedio;
-                break;
-            case 2:
-                echo "<th>Dificil</th>";
-                $sudoku = $sudokuDificil;
-                break;   
-           }
-           echo "<table>";
-
-           foreach ($sudoku as $fila) {
-            echo("<tr>");
-                foreach($fila as $casilla){
-                    if($casilla == '.'){
-                        echo "<td class='huecos'>",$casilla,"</td>";
-                    }else{
-                        echo "<td class='pistas'>",$casilla,"</td>";
-                    }
-                }
-                echo("</tr>");
-            }
-
-        echo "</table></div>";
-        }
-
-}
-
-
-function mostrar($sudoku){
-
-    echo "<div class='sudokuContainer'><table>";
-
+function generar($sudoku){
+    echo "<table>";
     foreach ($sudoku as $fila) {
      echo("<tr>");
          foreach($fila as $casilla){
@@ -97,10 +50,7 @@ function mostrar($sudoku){
          }
          echo("</tr>");
      }
-
  echo "</table></div>";
-}
+ return $sudoku;
+ }
 ?>
-
-</body>
-</html>
