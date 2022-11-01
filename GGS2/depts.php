@@ -55,10 +55,11 @@ if ($error != 0) {
       $conexion->query("INSERT INTO departments (dept_no, dept_name) VALUES ('$id', '$nombre')");
     }else if(isset($_POST['update_button'])){
       //Aquí gestionamos el actualizar
-      $nombre = array_keys($_POST['name']);
-      for($i=0;$i<count($nombre);$i++){
-        $conexion->query("UPDATE departments SET dept_name = '" . $nombre[$i]."'");
-      }
+      // $nombres = $_POST['name'];
+      // print_r($nombres);
+      //  foreach($nombres as $nombre){
+      //   //$conexion->query('UPDATE departments SET dept_name = '. $nombre . ' WHERE dept_no = ' . (?));
+      // }
     }
   }
   
@@ -66,9 +67,7 @@ if ($error != 0) {
     //Me traigo todos los registros de la tabla departamento
     
     $resultado = $conexion->query('SELECT * FROM departments');
-    
-      //echo '<pre>'.print_r($departamento).'</pre>';
-    
+        
 
 
 ?>
@@ -80,7 +79,7 @@ if ($error != 0) {
        </div>
        <div class="registrosContainer">
          <?php while($departamento = $resultado->fetch_array()){?> 
-           <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"> <input type="text" value="<?php echo $departamento['dept_name'];?>" name="name[<?php echo $departamento['dept_name']; ?>]"> <br>
+           <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"> <input type="text" value="<?php echo $departamento['dept_name'];?>" name="name[<?php echo $departamento['dept_no']; ?>]"> <br>
          
          <?php } ?>
          
