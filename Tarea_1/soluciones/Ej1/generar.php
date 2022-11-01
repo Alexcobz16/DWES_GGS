@@ -7,7 +7,8 @@
 <body>
 <?php
 require('definir.php');
-
+//La variable counter sirve como contador para identificar la dificultad del sudoku
+//situada en el switch.
 $counter = 1;
 
 foreach ($sudoku as $tipo) {
@@ -26,7 +27,7 @@ foreach ($sudoku as $tipo) {
             echo "<th>Difícil</th>";
             break;
     }
-
+//Con los siguientes foreach se imprimen las filas y columnas que componen el sudoku.
     echo "<table>";
 
     foreach ($tipo as $fila) {

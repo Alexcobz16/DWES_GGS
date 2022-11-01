@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,11 +6,11 @@
         <title>Sudoku</title>
     </head>
     <body>
-
     <?php
+//Para que se muestre el sudoku que necesitamos tenemos que pasárselos mediante el archivo donde está declarado.
 require('definir.php');
 $dificultad = $_POST['dificultad'];
-
+//Se imprime la dificultad elegida en función de la dificultad que se haya elegido en el index1.php
 switch($dificultad){
     case 1: echo "<h1>Fácil</h1>";
     break;
@@ -22,6 +20,7 @@ switch($dificultad){
     break;
 }
 echo "<div><table>";
+//Estos bucles imprimen el sudoku que hemos elegido.
     for($i=0;$i<count($sudoku[$dificultad-1]);$i++){
         echo '<tr>';
 

@@ -1,5 +1,5 @@
 <?php 
-//Se declaran los 3 arrays según su dificultad
+// La declaración de los arrays es idéntica a la del Ej2
 $sudokuFacil = array(
     array('.','.',1,9,4,8,5,'.','.'),
     array('.','.',3,7,'.',6,1,'.','.'),
@@ -38,7 +38,7 @@ $sudokuDificil = array(
 ?>
 
 <?php 
-//Mediante esta función se muestra el sudoku elegido.
+// La función generar es idéntica a la del Ej2
 function generar($sudoku){
     echo "<table>";
     foreach ($sudoku as $fila) {
@@ -53,7 +53,6 @@ function generar($sudoku){
          echo("</tr>");
      }
  echo "</table></div>";
- //Devuelve el sudoku mostrado para que se puedan actualizar y aplicar los cambios en la partida.
  return $sudoku;
  }
 ?>

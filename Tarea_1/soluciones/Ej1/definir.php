@@ -5,7 +5,9 @@
 </head>
 <body>
     <?php
-
+//Aquí se encuentran las declaraciones de los sudokus. En este caso es un array tridimensional
+//en el que el array sudoku se compone de 3 posiciones que corresponden con cada uno de los sudokus
+//y en el interior de cada uno un array que corresponden con las casillas de las filas y sus valores.
     $sudoku = array (
         array(
             array('.','.',1,9,4,8,5,'.','.'),

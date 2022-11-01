@@ -1,8 +1,7 @@
 <?php require_once('generar.php'); ?>
+
 <?php 
-// Al tener los sudokus por separado se imprimen mediante un for y un switch
-// donde la variable i es la que determina si el sudoku que se imprime es
-// fácil, medio o difícil
+// Aquí se imprimen los 3 arrays dependiendo del switch controlados mediante la i del bucle for.
 for($i=0;$i<3;$i++){ ?>
     <div class='sudokuContainer'>
     <?php
@@ -36,10 +35,9 @@ for($i=0;$i<3;$i++){ ?>
         <title>Selector de dificultad</title>
     </head>
     <body>
-        <!--El formulario es idéntico al que se ve en el Ej1-->
         <h1>Elige dificultad</h1>
         <br/>
-        <form method="post" action="partida.php">  
+        <form method="post" action="index3.php">  
             <p><input type="radio" value="1" name="dificultad" checked>Fácil <input type="radio" value="2" name="dificultad">Medio <input type="radio" value="3" name="dificultad">Difícil</p>
            <input type="submit" value="Jugar">
         </form>
