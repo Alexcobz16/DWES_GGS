@@ -55,15 +55,10 @@ if ($error != 0) {
       $conexion->query("INSERT INTO departments (dept_no, dept_name) VALUES ('$id', '$nombre')");
     }else if(isset($_POST['update_button'])){
       //Aquí gestionamos el actualizar
-      $counter = 0;
-      $resultado = $conexion->query('SELECT * FROM departments');
-      $departamento = $resultado->fetch_array();
-      print_r($departamento['dept_name']);
-      echo "<br>";
-      print_r($_POST['name']);
-
-      $counter++;
-  
+      $nombre = array_keys($_POST['name']);
+      for($i=0;$i<count($nombre);$i++){
+        $conexion->query("UPDATE departments SET dept_name = '" . $nombre[$i]."'");
+      }
     }
   }
   
