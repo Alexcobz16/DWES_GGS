@@ -55,11 +55,38 @@ if ($error != 0) {
       $conexion->query("INSERT INTO departments (dept_no, dept_name) VALUES ('$id', '$nombre')");
     }else if(isset($_POST['update_button'])){
       //Aquí gestionamos el actualizar
-      // $nombres = $_POST['name'];
-      // print_r($nombres);
-      //  foreach($nombres as $nombre){
-      //   //$conexion->query('UPDATE departments SET dept_name = '. $nombre . ' WHERE dept_no = ' . (?));
-      // }
+      //Ejecuto un select para saber qué hay guardado en la base de datos
+      $resultado = $conexion->query('SELECT * FROM departments');
+      // counter nos servirá para saber las posiciones de array
+      $counter = 0;
+
+      // A través del mismo bucle que se usa para mostrar los departamentos voy a guardar
+      // los nombres que están contenidos en la base de datos en un array llamado departamentos
+      // usando como posición la variable counter que va aumentando con cada recorrido.
+      while($departamento = $resultado->fetch_array()){
+        $departamentos[$counter] = $departamento['dept_name'];
+        $counter++;
+      }
+
+      // Creamos la sentencia SQL para actualizar
+      // las ? serán las variables que añadiremos posteriormente.
+      $query = 'UPDATE departments SET dept_name = ? WHERE dept_no = ?';
+      $actualizacion = $conexion->prepare($query);
+      // La variable nombres es un array que contendrá los campos de nombre 'name' que se
+      // han actualizado mediante POST.
+      $nombres = $_POST['name'];
+      // Hacemos lo mismo con los array keys para saber donde se tiene que guardar el nuevo nombre.
+      $codigos = array_keys($_POST['name']);
+      
+     foreach($nombres as $nombre){
+        for($i=0;$i<count($codigos);$i++){
+          if(($nombre == $nombres[$codigos[$i]]) && ($departamentos[$i] != $nombre)){
+            $codigo = $codigos[$i];
+            $actualizacion->bind_param("ss", $nombre, $codigo);
+            $actualizacion->execute();
+          }
+        }
+      }
     }
   }
   
@@ -67,7 +94,7 @@ if ($error != 0) {
     //Me traigo todos los registros de la tabla departamento
     
     $resultado = $conexion->query('SELECT * FROM departments');
-        
+    
 
 
 ?>
