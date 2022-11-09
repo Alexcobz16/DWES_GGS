@@ -24,10 +24,11 @@
 
 <?php
 require_once ('orden.inc.php');
+require('reiniciar_employees.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
- $conexion = new mysqli('localhost', 'root', '', 'employees');
+ $conexion = new mysqli('localhost', 'root', '1234', 'employees');
 
 $error = $conexion->connect_errno;
 
@@ -100,25 +101,40 @@ if ($error != 0) {
 ?>
   <div class="mainCointainer"> 
     <h1>Departamentos</h1>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form method="post">
        <div class="addContainer">
          <input type="submit" value="+" name="add_button"> <input type="text" value="" placeholder="Nombre nuevo departamento" name="new_department_name"> 
        </div>
        <div class="registrosContainer">
          <?php while($departamento = $resultado->fetch_array()){?> 
            <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"> <input type="text" value="<?php echo $departamento['dept_name'];?>" name="name[<?php echo $departamento['dept_no']; ?>]"> <br>
-         
          <?php } ?>
-         
-         
        </div>
        <div class="updateContainer">
          <input type="submit" value="Actualizar registros" name="update_button">
+         <br/>
+         <input type="submit" value="Reset base de datos" name="reset">
        </div>
-    </form>
+       </form>
+       <?php if(isset($_POST['reset'])){ ?>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <p>¿Qué sistema operativo estás utilizando? <input type="radio" value="win" name="os"> Windows <input type="radio" value="un" name="os"> Linux <input type="submit" value="Enviar" name="plataforma"></p>
+        <br/>
+
+        <?php
+       }
+       
+       if(isset($_POST['plataforma'])){
+          $plataforma = $_POST['os'];
+          resetear($plataforma);  
+        }
+
+        }              
+        ?>
+        </form>
   </div>
   <?php 
     $conexion->close();
-  }?>
+  ?>
 </body>
 </html>
