@@ -28,7 +28,7 @@ require('reiniciar_employees.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
- $conexion = new mysqli('localhost', 'root', '1234', 'employees');
+ $conexion = new mysqli('localhost', 'root', '', 'employees');
 
 $error = $conexion->connect_errno;
 
