@@ -11,20 +11,60 @@ function resetear($plataforma){ ?>
 
 
 <?php 
+if(isset($_POST['login'])){
 
-if(($plataforma == "win") && (isset($_POST['login'])) && (isset($_POST['user']) && !empty($_POST['user']))){
+
+if(($plataforma == "win") && (isset($_POST['user']) && !empty($_POST['user']))){
     if(isset($_POST['psswd']) && !empty($_POST['psswd'])){
-    
+        echo "Windows con contraseña";
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." < database/employees.sql");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." employees < database/load_departments.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." employees < database/load_employees.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." employees < database/load_dept_emp.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." employees < database/load_dept_manager.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." employees < database/load_titles.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." employees < database/load_salaries1.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." employees < database/load_salaries2.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " -p". $_POST['psswd'] ." employees < database/load_salaries3.dump");
     }else{
+        echo "Windows sin contraseña";
         exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " < database/employees.sql");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " employees < database/load_departments.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " employees < database/load_employees.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " employees < database/load_dept_emp.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " employees < database/load_dept_manager.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " employees < database/load_titles.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " employees < database/load_salaries1.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " employees < database/load_salaries2.dump");
+        exec("C:\xampp\mysql\bin\mysql.exe -u ". $_POST['user'] . " employees < database/load_salaries3.dump");
     }
-    // Sentencia para win = C:\xampp\mysql\bin\mysql.exe -u "" < Desktop\test_db-master\employees.sql
     }else{
         if(isset($_POST['psswd']) && !empty($_POST['psswd'])){
-           // mysql --user="" --password="" < employees.sql
+            echo "Linux con contraseña";
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." < database/employees.sql");
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." employees < database/load_departments.dump");
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." employees < database/load_employees.dump");
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." employees < database/load_dept_emp.dump");
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." employees < database/load_dept_manager.dump");
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." employees < database/load_titles.dump");
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." employees < database/load_salaries1.dump");
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." employees < database/load_salaries2.dump");
+           exec("mysql --user=". $_POST['user'] ." --password=". $_POST['psswd'] ." employees < database/load_salaries3.dump");
         }else{
-           // "mysql --user=".$_POST['user']." < employees.sql"
+            echo "Linux sin contraseña";
+            exec("mysql --user=". $_POST['user'] ." < database/employees.sql");
+            exec("mysql --user=". $_POST['user'] ." employees < database/load_departments.dump");
+            exec("mysql --user=". $_POST['user'] ." employees < database/load_employees.dump");
+            exec("mysql --user=". $_POST['user'] ." employees < database/load_dept_emp.dump");
+            exec("mysql --user=". $_POST['user'] ." employees < database/load_dept_manager.dump");
+            exec("mysql --user=". $_POST['user'] ." employees < database/load_titles.dump");
+            exec("mysql --user=". $_POST['user'] ." employees < database/load_salaries1.dump");
+            exec("mysql --user=". $_POST['user'] ." employees < database/load_salaries2.dump");
+            exec("mysql --user=". $_POST['user'] ." employees < database/load_salaries3.dump");
+
         }    
     }
 }
+}
+
 ?>
