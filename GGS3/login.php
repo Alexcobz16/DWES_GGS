@@ -15,6 +15,7 @@ try{
 
 if((isset($_SESSION['login']) && ($_SESSION['login']))){
     header("Location: ./tienda.php");
+    $conexion->close;
     exit();
 }else{
 
