@@ -12,6 +12,8 @@ try{
         echo $e->getMessage();
     }
 
+    //botones de la cesta
+
 ?>
 <html>
 
@@ -28,7 +30,7 @@ try{
   </div>
   <div id="cesta">
     <h3><img src="cesta.jpg" alt="Cesta" width="24" height="21"> Cesta</h3>
-    <hr />
+    <hr/>
     <form id='vaciar' action='productos.php' method='post'>
         <input type='submit' name='vaciar' value='Eliminar Cesta'/>
     </form>
@@ -46,7 +48,6 @@ try{
         <form>
     <?php
         $select = $conexion->query("SELECT cod, nombre_corto, descripcion, PVP FROM producto");
-
         while($producto = $select->fetch_array()){
     ?>
     <tr>
