@@ -1,8 +1,10 @@
 <?php 
 /**
- * base de datos
+ * base de datos productos_comerciales
  * css de la tienda
- * login
+ * login login.php
  */
+
+
 
 ?>
