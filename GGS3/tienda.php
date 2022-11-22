@@ -4,6 +4,7 @@
  * css de la tienda
  * login login.php
  */
+session_start();
 
 try{
     $conexion = new mysqli('localhost', 'root', '', 'ejtienda');
@@ -13,6 +14,9 @@ try{
     }
 
     //botones de la cesta
+    // if(isset($_POST['añadir'])){
+
+    // }
 
 ?>
 <html>
