@@ -14,9 +14,9 @@ try{
     }
 
     //botones de la cesta
-    // if(isset($_POST['añadir'])){
-
-    // }
+    if(isset($_POST['añadir'])){
+        
+    }
 
 ?>
 <html>
@@ -58,7 +58,7 @@ try{
         <td><?php echo $producto['nombre_corto'];?></td>
         <td><?php echo $producto['descripcion'];?></td>
         <td><?php echo $producto['PVP'];?></td>
-        <td><input type="button" name="añadir[<?php echo $producto['cod'];?>]" value="+"></td>
+        <td><input type="submit" name="añadir[<?php echo $producto['cod'];?>]" value="+"></td>
     </tr>
     </form>
     <?php
@@ -69,7 +69,7 @@ try{
   </div>
   <br class="divisor"/>
   <div id="pie">
-    <form action='logoff.php' method='post'>
+    <form action='login.php' method='post'>
         <input type='submit' name='logoff' value='Cerrar Sesión'/>
     </form>        
     </div>

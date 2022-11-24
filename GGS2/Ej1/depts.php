@@ -125,10 +125,23 @@ if ($error != 0) {
        }
        
        if(isset($_POST['plataforma'])){
-          $plataforma = $_POST['os'];
-          resetear($plataforma);  
-        }
+        $plataforma = $_POST['plataforma'];        
+?>
 
+<br/>
+<form method="post">
+    <h3>Login</h3>
+    <p>Usuario: <input name="user"></p>
+    <br/>
+    <p>Contraseña (Si existe): <input name="psswd"></p>
+    <input type="button" value="login" name="Login">
+</form>
+
+<?php 
+
+} 
+?>
+<?php
         }              
         ?>
         </form>
