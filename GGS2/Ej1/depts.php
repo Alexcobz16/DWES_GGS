@@ -116,25 +116,10 @@ if ($error != 0) {
          <input type="submit" value="Reset base de datos" name="reset">
        </div>
        </form>
-       <?php if(isset($_POST['reset'])){ ?>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <p>¿Qué sistema operativo estás utilizando? <input type="radio" value="win" name="os"> Windows <input type="radio" value="un" name="os"> Linux <input type="submit" value="Enviar" name="plataforma"></p>
-        <br/>
-
-        <?php
-       }
-       
-       if(isset($_POST['plataforma'])){
-          $plataforma = $_POST['os'];
-          resetear($plataforma);  
-        }
-
-        }              
-        ?>
-        </form>
   </div>
   <?php 
     $conexion->close();
+}
   ?>
 </body>
 </html>
