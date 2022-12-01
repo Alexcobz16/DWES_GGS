@@ -4,6 +4,9 @@
  * css de la tienda
  * login login.php
  */
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 
 try{
@@ -12,6 +15,14 @@ try{
         echo "Se ha producido un error: ";
         echo $e->getMessage();
     }
+
+    if(!isset($_SESSION['login'])||empty($_SESSION['login'])){
+        header("Location: ./login.php");
+    }else{
+        $_SESSION['cesta'] = array(
+            'productos' => array()
+        );
+    
 
     //botones de la cesta
     if(isset($_POST['añadir'])){
@@ -76,3 +87,4 @@ try{
 </div>
 </body>
 </html>
+<?php } ?>

@@ -24,7 +24,7 @@
 
 <?php
 require_once ('orden.inc.php');
-require('reiniciar_employees.php');
+require_once('reiniciar_employees.php');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -116,34 +116,31 @@ if ($error != 0) {
          <input type="submit" value="Reset base de datos" name="reset">
        </div>
        </form>
-       <?php if(isset($_POST['reset'])){ ?>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <p>¿Qué sistema operativo estás utilizando? <input type="radio" value="win" name="os"> Windows <input type="radio" value="un" name="os"> Linux <input type="submit" value="Enviar" name="plataforma"></p>
-        <br/>
 
-        <?php
-       }
-       
-       if(isset($_POST['plataforma'])){
-        $plataforma = $_POST['plataforma'];        
-?>
-
-<br/>
-<form method="post">
-    <h3>Login</h3>
-    <p>Usuario: <input name="user"></p>
-    <br/>
-    <p>Contraseña (Si existe): <input name="psswd"></p>
-    <input type="button" value="login" name="Login">
-</form>
-
-<?php 
-
-} 
-?>
 <?php
-        }              
-        ?>
+  if(isset($_POST['reset'])){
+?>
+  <form>
+    <p>¿Qué sistema operativo estás utilizando? <input type="radio" checked name="os" value="win"> Windows <input type="radio" name="os" value="un"> Linux</p>
+    <input type="submit" name="plataforma" value="Enviar">
+  </form>
+  <?php
+  if(isset($_POST['plataforma'])){
+    $plataforma = $_POST['os'];
+    ?>
+    <form method="post">
+      <p>Usuario: <input name="user"></p>
+      <p>Contraseña (si existe) <input name="psswd"></p>
+      <input type="submit" name="login" value="Login">
+    </form>
+    <?php
+    if(isset($_POST['login']) && isset($_POST['user']) && !empty($_POST['user'])){
+      resetear($plataforma, $_POST['user'], $_POST['psswd']);
+    }
+  }
+  }
+}              
+?>
         </form>
   </div>
   <?php 
