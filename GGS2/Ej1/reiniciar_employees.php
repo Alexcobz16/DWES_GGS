@@ -62,3 +62,4 @@ if(($plataforma == "win") && (isset($_POST['user']) && !empty($_POST['user']))){
             exec("mysql --user=". $_POST['user'] ." employees < database/load_salaries2.dump");
             exec("mysql --user=". $_POST['user'] ." employees < database/load_salaries3.dump");
 
+        }
