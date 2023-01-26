@@ -16,7 +16,7 @@ class ControladorPokemon{
         $mensajes_usuario = $this->mensajes_usuario;
         $modelo_pokemon = new ModeloPokemon();
         $datos = $modelo_pokemon->getAllPokemons($params);
-      
+        //print_r($datos);
       
       if(is_file("./app/vistas/pokemon/listado_pokemons.tpl.php")){
         require_once('./app/vistas/pokemon/listado_pokemons.tpl.php');
@@ -26,10 +26,12 @@ class ControladorPokemon{
       }
     }
     public function ver($params){
-      $mensajes_usuario = $this->mensaje_usuario;
-      $id= $params['id'];
-      //Tenemos que asegurar que $id es un entero. En cualquier otro caso podría haber problemas de seguridad
-      if(ctype_digit($id)){
+
+      if((isset($params['source'])&&($params['source']=='api'))){
+        $mensajes_usuario = $this->mensaje_usuario;
+        $id= $params['id'];
+
+        if(ctype_digit($id)){
           $modelo_pokemon = new ModeloPokemon();
           $datos = $modelo_pokemon->getPokemon($id);
         
@@ -44,6 +46,28 @@ class ControladorPokemon{
       }else{
         throw new Exception('El parámetro no es adecuado');
       }
+
+
+      }else{
+        $mensajes_usuario = $this->mensaje_usuario;
+        $id= $params['id'];
+        //Tenemos que asegurar que $id es un entero. En cualquier otro caso podría haber problemas de seguridad
+        if(ctype_digit($id)){
+            $modelo_pokemon = new ModeloPokemon();
+            $datos = $modelo_pokemon->getPokemon($id);
+          
+
+          if(is_file("./app/vistas/pokemon/info_pokemon.tpl.php")){
+            require_once('./app/vistas/pokemon/info_pokemon.tpl.php');
+            $_SESSION['mensajes_usuario'] = '';
+
+          }else{
+            throw new Exception('Vista no disponible');
+          }
+        }else{
+          throw new Exception('El parámetro no es adecuado');
+        }
+    }
     }
     public function eliminar($params){
       $id= $params['id'];

@@ -35,18 +35,19 @@ class ModeloPokemon{
         
     }
     private function _getAllPokemonsFromAPI(){
-        $ch = curl_init("https://pokeapi.co/api/v2/pokemon/");
+        $ch = curl_init("https://pokeapi.co/api/v2/pokemon/?limit=493");
         //https://pokeapi.co/api/v2/pokemon/?limit=493
         //Imagen aislada https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/19.png
         //Nombre aislado $resultado['results'][18]['name']
         /**
          * Tipo
          * 
-         * curl_init($resultado['results'][0]['url'])
+         * curl_init($resultado['results'][0]['url']);
          * curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
          * $resultado = curl_exec($ch);
          * curl_close($ch);
          * $resultado = json_decode($resultado,true);
+         * $resultado['types'][0]['type']['name'];
          */
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         //curl_setopt($ch, CURLOPT_URL, "https://pokeapi.co/api/v2/pokemon/1");
@@ -54,8 +55,28 @@ class ModeloPokemon{
         curl_close($ch);
     
         $resultado = json_decode($resultado,true);
-        print_r($resultado);
+        
+        $tipos = $this->_getTiposFromAPI($resultado['results']);
+
+        // print_r($resultado['results']);
+        array_push($resultado, $tipos);
+        return $resultado;
     }
+
+    private function _getTiposFromAPI($datos){
+        $tipos = array();
+            for($i=1;$i<=count($datos);$i++){
+                $ch = curl_init("https://pokeapi.co/api/v2/pokemon/$i");      
+                curl_init($datos[$i]['url']);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $resultado = curl_exec($ch);
+                curl_close($ch);
+                $resultado = json_decode($resultado,true);
+                array_push($tipos, $resultado['types'][0]['type']['name']);
+        }
+        return $tipos;
+    }
+
     private function _getAllPokemonsFromDB(){
         $resultado = $this->manejador_conexion->query('SELECT pokemons.id_pokemon, pokemons.nombre, tipos.nombre AS tipo, pokemons.url_imagen FROM pokemons INNER JOIN tipos ON pokemons.tipo = tipos.id_tipo')->fetchAll(PDO::FETCH_ASSOC);
         return $resultado;       
