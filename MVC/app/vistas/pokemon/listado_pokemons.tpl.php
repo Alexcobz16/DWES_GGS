@@ -16,7 +16,6 @@
                             <td><img width="96" height="96" src="<?php echo "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/".$id.".png"; ?>"></td>
                             <td><a href="./?controlador=pokemon&metodo=ver&id=<?php echo $id; ?>&source=api"><?php echo $pokemon['name']; ?></a></td>
                             <td><?php echo $datos[0][$id-1]; ?></td>
-                            <!-- <td><a href="?controlador=pokemon&metodo=eliminar&id=<?php// echo $datos_pokemon['id_pokemon']; ?>">Eliminar</a></td> -->
                         </tr>
                     <?php
                         $id++;
