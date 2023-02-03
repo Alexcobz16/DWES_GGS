@@ -116,7 +116,9 @@ class ModeloPokemon{
             'poke_img' => $params_pokemon['poke_img'],
             'poke_desc' => $params_pokemon['poke_desc'],
         ));
-  
+    }
 
+    public function importFromAPI($pokemon){
+            
     }
 }
