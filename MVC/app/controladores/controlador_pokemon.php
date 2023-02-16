@@ -117,5 +117,19 @@ class ControladorPokemon{
       }
     }
 
-    
+    public function update($params){
+      $id = $params['id'];
+      $modelo_pokemon = new ModeloPokemon();
+      if(!isset($_POST['update'])){
+        if(is_file("./app/vistas/pokemon/formulario_update_pokemon.tpl.php")){
+          $datos = $modelo_pokemon->getPokemon($id);
+          require_once('./app/vistas/pokemon/formulario_update_pokemon.tpl.php');
+          }else{
+            throw new Exception('Vista no disponible');
+          }
+      }else{
+        $modelo_pokemon->updatePokemon($_POST);
+        header('Location: ./?controlador=pokemon&metodo=listar');
+      }
+    }
 }

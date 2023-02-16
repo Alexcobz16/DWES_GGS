@@ -88,7 +88,6 @@ class ModeloPokemon{
 
     public function getPokemon($id){
         $resultado = $this->manejador_conexion->query('SELECT pokemons.id_pokemon, pokemons.nombre, tipos.nombre AS tipo, pokemons.url_imagen, pokemons.descripcion FROM pokemons INNER JOIN tipos ON pokemons.tipo = tipos.id_tipo WHERE pokemons.id_pokemon = \''.$id.'\'')->fetchAll(PDO::FETCH_ASSOC);
-        
         return reset($resultado);
         
     }
@@ -120,5 +119,16 @@ class ModeloPokemon{
 
     public function importFromAPI($pokemon){
             
+    }
+
+    public function updatePokemon($params_pokemon){
+        print_r($params_pokemon);
+        echo "<br>";
+        $id = $params_pokemon['id'];
+        $nombre = $params_pokemon['poke_nombre'];
+        $descripcion = $params_pokemon['poke_desc'];
+        $imagen = $params_pokemon['poke_img'];
+        $consulta = $this->manejador_conexion->query("UPDATE pokemons SET nombre = '$nombre', url_imagen = '$imagen', descripcion = '$descripcion'  WHERE id_pokemon = $id");
+        
     }
 }
