@@ -118,7 +118,71 @@ class ModeloPokemon{
     }
 
     public function importFromAPI($pokemon){
-            
+        print_r($pokemon);
+        $id = $pokemon['id'];
+        $nombre = $pokemon['nombre'];
+        $tipo = $pokemon['tipo'];
+        $imagen = $pokemon['url'];
+
+        switch($tipo){
+            case 'fire':
+                $tipo = 2;
+                break;
+            case 'normal':
+                $tipo = 4;
+                break;
+            case 'fighting':
+                $tipo = 5;
+                break;
+            case 'water':
+                $tipo = 6;
+                break;
+            case 'flying':
+                $tipo = 7;
+                break;
+            case 'grass':
+                $tipo = 3;
+                break;
+            case 'poison':
+                $tipo = 8;
+                break;
+            case 'electric':
+                $tipo = 1;
+                break;
+            case 'ground':
+                $tipo = 9;
+                break;
+            case 'psychic':
+                $tipo = 10;
+                break;
+            case 'rock':
+                $tipo = 11;
+                break;
+            case 'ice':
+                $tipo = 12;
+                break;
+            case 'bug':
+                $tipo = 13;
+                break;
+            case 'dragon':
+                $tipo = 14;
+                break;
+            case 'ghost':
+                $tipo = 15;
+                break;
+            case 'dark':
+                $tipo = 16;
+                break;
+            case 'steel':
+                $tipo = 17;
+                break;
+            case 'fairy':
+                $tipo = 18;
+                break;
+        }
+
+        $this->manejador_conexion->query("INSERT INTO `pokemons`(`id_pokemon`, `nombre`, `tipo`, `url_imagen`, `descripcion`) VALUES ('$id','$nombre','$tipo','$imagen','Importado de PokeAPI.')");
+
     }
 
     public function updatePokemon($params_pokemon){

@@ -8,7 +8,7 @@ class ControladorRestAPI{
     public function procesar($path){
         $params = explode('/', $path['path']);
         
-        //print_r($params);
+        print_r($params);
         //echo count($params);
         switch($_SERVER['REQUEST_METHOD']){
         case 'GET': 
