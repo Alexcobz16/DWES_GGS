@@ -136,7 +136,7 @@ class ControladorPokemon{
     public function importar($params){
       $modelo_pokemon = new ModeloPokemon();
       $modelo_pokemon->importFromAPI($params);
-      //header('Location: ./?controlador=pokemon&metodo=listar');      
+      header('Location: ./?controlador=pokemon&metodo=listar');      
     }
   }
 

@@ -181,8 +181,8 @@ class ModeloPokemon{
                 break;
         }
 
-        $this->manejador_conexion->query("INSERT INTO `pokemons`(`id_pokemon`, `nombre`, `tipo`, `url_imagen`, `descripcion`) VALUES ('$id','$nombre','$tipo','$imagen','Importado de PokeAPI.')");
-
+        return $this->manejador_conexion->query("INSERT INTO `pokemons`(`id_pokemon`, `nombre`, `tipo`, `url_imagen`, `descripcion`) VALUES ('$id','$nombre','$tipo','$imagen','Importado de PokeAPI.')");
+        
     }
 
     public function updatePokemon($params_pokemon){
