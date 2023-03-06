@@ -79,7 +79,7 @@ class ModeloPokemon{
 
     private function _getAllPokemonsFromDB(){
         $resultado = $this->manejador_conexion->query('SELECT pokemons.id_pokemon, pokemons.nombre, tipos.nombre AS tipo, pokemons.url_imagen FROM pokemons INNER JOIN tipos ON pokemons.tipo = tipos.id_tipo')->fetchAll(PDO::FETCH_ASSOC);
-        return $resultado;       
+        return $resultado;
     }
     public function getAllTipos(){
         $resultado = $this->manejador_conexion->query('SELECT * FROM tipos')->fetchAll(PDO::FETCH_ASSOC);
@@ -115,6 +115,19 @@ class ModeloPokemon{
             'poke_img' => $params_pokemon['poke_img'],
             'poke_desc' => $params_pokemon['poke_desc'],
         ));
+    }
+
+    public function insertJSONPokemon($params_pokemon){
+        $tipo = reset(array_keys($params_pokemon[3]));
+        print_r($params_pokemon);
+        $stmt = $this->manejador_conexion->prepare("INSERT INTO pokemons (nombre, tipo, url_imagen, descripcion) VALUES (:nombre, :tipo, :url_imagen, :descripcion)");
+        $stmt->bindParam(':nombre', $params_pokemon[0], PDO::PARAM_STR);
+        $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
+        $stmt->bindParam(':url_imagen', $params_pokemon[2], PDO::PARAM_STR);
+        $stmt->bindParam(':descripcion', $params_pokemon[1], PDO::PARAM_STR);
+
+        $stmt->execute();
+
     }
 
     public function importFromAPI($pokemon){

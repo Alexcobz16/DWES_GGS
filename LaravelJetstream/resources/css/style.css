@@ -1,0 +1,17 @@
+.botones:hover {
+    color: white;
+  }
+
+.botones:active {
+    color: white;
+  }
+
+  #tabla{
+    width: 100%;
+  }
+  .formularios{
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    margin-top: 3%;
+  }

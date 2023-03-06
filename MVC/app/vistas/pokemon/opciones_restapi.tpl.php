@@ -1,0 +1,5 @@
+<?php include_once('./app/vistas/inc/header.tpl.php'); ?>
+<p>Mostrar Pokemon de RestAPI (Enviar con valores por defecto para mostrar todos de RestAPI)</p><form method="get"> <input type="hidden" id="controlador" name="controlador" value="restapi"><input type="hidden" id="metodo" name="metodo" value="procesar"><input type="text" id="path" name="path" value="/"><input type="submit" value="Enviar"></form>
+<a href="./?controlador=restapi&metodo=getFormulario&funcion=add"><p>Añadir un pokemon a RestAPI</p></a>
+<p>Introduce el ID del Pokemon de RestAPI para modificarlo</p><form method="get"> <input type="hidden" id="controlador" name="controlador" value="restapi"><input type="hidden" id="metodo" name="metodo" value="getFormulario"><input type="text" id="path" name="path" value="/"><input type="submit" value="Enviar"></form>
+<?php include_once('./app/vistas/inc/footer.tpl.php'); ?>

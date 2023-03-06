@@ -35,6 +35,7 @@
                     <?php endforeach; ?>
                     </tbody>
                     <p><a href="./?controlador=pokemon&metodo=listar&source=api">Listar de PokeAPI (Pokedex nacional)</a></p>
-            <?php } ?>            
+                    <p><a href="./?controlador=restapi&metodo=getOpciones">Opciones de RestAPI</a></p>
+                    <?php } ?>            
 <p><a href="./?controlador=pokemon&metodo=addPokemon">Añadir pokemon</a></p>
 <?php include_once('./app/vistas/inc/footer.tpl.php'); ?>
